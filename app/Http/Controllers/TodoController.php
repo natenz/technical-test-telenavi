@@ -11,7 +11,6 @@ use App\Services\TodoExportService;
 
 class TodoController extends Controller
 {
-    // GET /api/todos
 public function index(Request $request)
 {
     $perPage = $request->get('per_page', 10);
@@ -21,7 +20,7 @@ public function index(Request $request)
 
     return response()->json([
         'data' => $todos->items(),
-        'meta' => [
+        'pagination' => [
             'current_page' => $todos->currentPage(),
             'last_page' => $todos->lastPage(),
             'per_page' => $todos->perPage(),
@@ -30,7 +29,6 @@ public function index(Request $request)
     ]);
 }
 
-    // POST /api/todos
     public function store(Request $request)
     {
         $validated = $request->validate([
