@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Todo;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
+use Illuminate\Http\Response;
+use App\Services\TodoExportService;
 
 class TodoController extends Controller
 {
@@ -17,7 +21,7 @@ public function index(Request $request)
 
     return response()->json([
         'data' => $todos->items(),
-        'pagination' => [
+        'meta' => [
             'current_page' => $todos->currentPage(),
             'last_page' => $todos->lastPage(),
             'per_page' => $todos->perPage(),
@@ -45,5 +49,10 @@ public function index(Request $request)
             'data' => $todo
         ], 201);
     }
+public function export(Request $request, TodoExportService $service)
+{
+    return $service->exportExcel($request->query());
+}
+
 }
 
