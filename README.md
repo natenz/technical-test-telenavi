@@ -57,3 +57,8 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+START :  php artisan serve
+API's 
+- GET | url| /api/todos  - Request GET Table Todos
+- POST | url | /api/todos - CREATE Table todos.
